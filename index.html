@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>GPA Calc</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main-container">
+            <h1>GPA Calculator</h1>
+            <div class="main-form">
+                <form class="form1">
+                <!--input fields-->
+                <!--<label>1st</label>-->
+                <select id="mySelect" class="mySelect">
+                    <option value="A+" selected="selected">A+</option>
+                    <option value="A">A</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B">B</option>
+                    <option value="B-">B-</option>
+                    <option value="C+">C+</option>
+                    <option value="C">C</option>
+                    <option value="C-">C-</option>
+                    <option value="D+">D+</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+                <input type="text" name="credit" class="credit"><br>
+                
+                </form>
+                
+            </div>
+            <div class="buttons">
+                <button class="submit">Submit</button>
+                <button class="add">Add</button>
+            </div>
+
+            <div class="dispaly">
+                <p class="gpa-display">
+
+                </p>
+            </div>
+            
+            
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

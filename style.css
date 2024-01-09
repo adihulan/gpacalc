@@ -1,0 +1,48 @@
+body{
+    background-color: #9EC8B9;
+    font-family: 'Poppins', sans-serif;
+    color: #092635;
+}
+
+
+.main-container{
+    display: flex;
+    flex-direction: column   ;
+    justify-content:center;
+    align-items:center;
+    height: 100vh;
+    background-color: #9EC8B9;;
+}
+
+input[type=text] {
+    border: 2px solid #5C8374;
+    background-color: #dcf2f1;
+    margin: 5px 10px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-weight:200;
+    box-shadow: 10px;
+
+  }
+
+
+select{
+    border: 2px solid #5C8374;
+    background-color: #DCF2F1;
+    border-radius: 10px;
+    height: 40px;
+    padding-left: 10px;
+    width: 60px;
+  }
+
+
+  button{
+    width: 100px;
+    background-color: #DCF2F1;
+    border: 2px solid #5C8374;
+    border-radius: 10px;
+
+    padding: 10px;
+  }
+
+
