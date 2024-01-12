@@ -15,7 +15,7 @@
                 <form class="form1">
                 <!--input fields-->
                 <!--<label>1st</label>-->
-                <select id="mySelect" class="mySelect">
+                <!--<select id="mySelect" class="mySelect">
                     <option value="A+" selected="selected">A+</option>
                     <option value="A">A</option>
                     <option value="A-">A-</option>
@@ -29,14 +29,30 @@
                     <option value="D">D</option>
                     <option value="E">E</option>
                 </select>
-                <input type="text" name="credit" class="credit"><br>
+                <input type="text" name="credit" class="credit"><br>-->
                 
+                <div class="semdiv">
+                <h3>Select your semester:</h3>
+                <select id="semSelect" class="semSelect">
+                    <option value="IT11" selected="selected">1st Year 1st Sem</option>
+                    <option value="IT12">1st year 2nd sem</option>
+                </select><br>
+                </div>
+
+                <table class="tabel">
+                    <tr>
+                        <th>name</th>
+                        <th>credit</th>
+                        <th>mark</th>
+                    </tr>
+                </table>
                 </form>
                 
             </div>
             <div class="buttons">
                 <button class="submit">Submit</button>
                 <button class="add">Add</button>
+                <button class="find">find</button>
             </div>
 
             <div class="dispaly">
@@ -48,5 +64,110 @@
             
         </div>
         <script src="script.js"></script>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDiVd3PCUHUgibHD6aHbbVFMjwHie4VJwM",
+  authDomain: "gpaproject-6646a.firebaseapp.com",
+  projectId: "gpaproject-6646a",
+  storageBucket: "gpaproject-6646a.appspot.com",
+  messagingSenderId: "253751961118",
+  appId: "1:253751961118:web:055c0a95a558e634c3700f"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+import {getDatabase, ref, get, set, child, update, remove}
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const db = getDatabase();
+
+const find = document.querySelector('.find')
+const form1 = document.querySelector('.form1')
+const semSelect = document.querySelector('.semSelect')
+const tabel = document.querySelector('.tabel')
+console.log(semSelect.value)
+
+    function selectData(){
+         const dbref = ref(db);
+
+        get(child(dbref, "theGpa/"+ semSelect.value)).then((snapshot) => {
+             if(snapshot.exists()){
+             console.log(snapshot.val())
+                let subs = snapshot.val()
+
+                for(let i=0 ; i<Object.keys(subs).length ; i++){
+                    let sub = Object.values(subs)[i];
+
+                    var credit =  document.createElement("input");
+                    var label = document.createElement("label");
+                    var tr = document.createElement("tr")
+                    var td1 = document.createElement("td")
+                    var td2 = document.createElement("td")
+                    var td3 = document.createElement("td")
+
+                    label.innerHTML = sub.name;
+
+                    credit.type = "text";
+                    credit.className += ' credit';
+                    credit.value = sub.credit;
+
+                    //creating the select
+                    var array = ["A+","A","A-","B+","B","B-","C+","C","C-","D+","D","E"];
+
+                    //Create and append select list
+                    var selectList = document.createElement("select");
+                    selectList.className += ' mySelect';
+
+                    //appending all the items to the form
+                    /*form1.appendChild(label); 
+                    form1.appendChild(credit);
+                    form1.appendChild(selectList);*/
+
+                    td1.appendChild(label)
+                    td2.appendChild(credit)
+                    td3.appendChild(selectList)
+
+                    tr.appendChild(td1)
+                    tr.appendChild(td2)
+                    tr.appendChild(td3)
+
+                    tabel.appendChild(tr)
+
+                    //Create and append the options
+                    for (var x = 0; x < array.length; x++) {
+                         var option = document.createElement("option");
+                         option.value = array[x];
+                         option.text = array[x];
+                         selectList.appendChild(option);
+                        }
+                    
+
+                    
+                    
+                    console.log(sub.name)
+                    console.log(sub.credit)
+                }
+
+             }
+             else{
+               console.log('no data found')
+           }
+    }) 
+    .catch((error) => {
+        alert("unsuccesful , error"+error)
+    })
+}
+
+    
+        find.addEventListener('click', selectData)
+        </script>
+
     </body>
 </html>
