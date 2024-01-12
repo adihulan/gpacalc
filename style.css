@@ -22,9 +22,14 @@ input[type=text] {
     padding: 10px 10px;
     font-weight:200;
     box-shadow: 10px;
+    width: 50px;
 
   }
 
+  label{
+    display: inline-block;
+    text-align: right;
+  }
 
 select{
     border: 2px solid #5C8374;
@@ -44,5 +49,19 @@ select{
 
     padding: 10px;
   }
+
+.semdiv{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.semSelect{
+  width: auto;
+  margin-left: 20px;
+}
+
+
 
 
