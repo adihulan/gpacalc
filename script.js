@@ -1,7 +1,8 @@
-console.log('hiii')
+console.log('hi script')
 
 const name = document.querySelector('.name')
 const submit = document.querySelector('.submit')
+
 const addText = document.querySelector('.add')
 const form1 = document.querySelector('.form1')
 const gpadisplay = document.querySelector('.gpa-display')
