@@ -40,19 +40,15 @@
                 </div>
 
                 <table class="tabel">
-                    <tr>
-                        <th>name</th>
-                        <th>credit</th>
-                        <th>mark</th>
-                    </tr>
+                    
                 </table>
                 </form>
                 
             </div>
             <div class="buttons">
-                <button class="submit">Submit</button>
-                <button class="add">Add</button>
-                <button class="find">find</button>
+                <button class="submit">Calculate</button>
+                <!--<button class="add">Add</button>-->
+                <button class="find">Find</button>
             </div>
 
             <div class="dispaly">
@@ -94,13 +90,47 @@ const semSelect = document.querySelector('.semSelect')
 const tabel = document.querySelector('.tabel')
 console.log(semSelect.value)
 
+    find.addEventListener('click', selectData)
+
     function selectData(){
+
+        //checking whether thare is a table
+        var oRows = tabel.getElementsByTagName('tr');
+        var iRowCount = oRows.length;
+        console.log(iRowCount);
+
+        //removing the ithems from the tabel
+        if(iRowCount!=0){
+            for(let i =0; i<iRowCount; i++){
+                document.querySelector(".row").remove()
+            }
+        }
+
          const dbref = ref(db);
 
         get(child(dbref, "theGpa/"+ semSelect.value)).then((snapshot) => {
              if(snapshot.exists()){
              console.log(snapshot.val())
                 let subs = snapshot.val()
+
+                var trh = document.createElement("tr")
+                var tdh1 = document.createElement("th")
+                var tdh2 = document.createElement("th")
+                var tdh3 = document.createElement("th")
+
+                trh.className += ' row';
+
+                tdh1.innerHTML = "Name"
+                tdh2.innerHTML = "Credit"
+                tdh3.innerHTML = "Mark"
+                
+
+                trh.appendChild(tdh1)
+                trh.appendChild(tdh2)
+                trh.appendChild(tdh3)
+
+                
+                tabel.appendChild(trh)
 
                 for(let i=0 ; i<Object.keys(subs).length ; i++){
                     let sub = Object.values(subs)[i];
@@ -117,6 +147,8 @@ console.log(semSelect.value)
                     credit.type = "text";
                     credit.className += ' credit';
                     credit.value = sub.credit;
+
+                    tr.className += ' row';
 
                     //creating the select
                     var array = ["A+","A","A-","B+","B","B-","C+","C","C-","D+","D","E"];
@@ -138,6 +170,7 @@ console.log(semSelect.value)
                     tr.appendChild(td2)
                     tr.appendChild(td3)
 
+                    
                     tabel.appendChild(tr)
 
                     //Create and append the options
@@ -166,7 +199,7 @@ console.log(semSelect.value)
 }
 
     
-        find.addEventListener('click', selectData)
+        
         </script>
 
     </body>
