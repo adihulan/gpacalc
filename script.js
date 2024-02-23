@@ -3,18 +3,23 @@ console.log('hi script')
 const name = document.querySelector('.name')
 const submit = document.querySelector('.submit')
 
-const addText = document.querySelector('.add')
+//const addText = document.querySelector('.add')
 const form1 = document.querySelector('.form1')
 const gpadisplay = document.querySelector('.gpa-display')
 let merkarr = []
-const creditarr = []
+let creditarr = []
 
 
 submit.addEventListener('click', onSubmit)
-addText.addEventListener('click', onAdd)
+//addText.addEventListener("click", test);
+
+function test(e){
+    window.location.href = "index2.html";
+}
 
 function onSubmit(e){
     merkarr = [];
+    creditarr = [];
     e.preventDefault();
 
     //putting the marks to an arrey
@@ -37,6 +42,7 @@ function onSubmit(e){
 
     console.log(gpa)
     gpadisplay.innerHTML = gpa;
+    gpa = 0;
 }
 
 let i = 2
@@ -83,7 +89,7 @@ function gpaCalc(convertedMarks,convertedCredits){
     let cumultativeGpa = [];
 
     console.log(convertedMarks);
-    console.log(convertedCredits);
+    console.log(convertedCredits); 
 
     
 
@@ -144,6 +150,7 @@ function convertMarks(merkarr){
 function convertCredits(creditarr){
 
     let numberArray = [];
+    console.log(creditarr)
 
     for (let i = 0; i < creditarr.length; i++){
         numberArray.push(parseInt(creditarr[i]));
